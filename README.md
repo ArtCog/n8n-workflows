@@ -49,7 +49,8 @@ The goal: **transform manual processes into intelligent, self-operating systems.
 ---
 
 ## 📬 Contacts
-- Telegram: [@Art_Cog](https://t.me/Art_Cog)  
+- Telegram: [@Art_Cog](https://t.me/Art_Cog)  <img width="3206" height="3768" alt="image" src="https://github.com/user-attachments/assets/726e514b-dc41-4a34-81e2-7bed5795405f" />
+
 - GitHub: [ArtCog](https://github.com/ArtCog)
 
 ---
