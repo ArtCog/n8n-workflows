@@ -1,0 +1,1445 @@
+{
+  "name": "AGENT: Schreiben V1",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -4736,
+        -1984
+      ],
+      "id": "fc195d67-ac89-4dc4-9939-40db783a6618",
+      "name": "Telegram Trigger",
+      "webhookId": "8b5af97d-1aaa-427c-b664-3f2f19b89621",
+      "credentials": {
+        "telegramApi": {
+          "id": "eYQu9hbGctTTBF6y",
+          "name": "B1 Schreiben"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "926aeded-adba-414d-901d-22807216ca91",
+              "name": "user_id",
+              "value": "={{$json[\"message\"][\"from\"][\"id\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "0406a140-f94c-477f-9072-98c364d292c9",
+              "name": "chat_id",
+              "value": "={{$json[\"message\"][\"chat\"][\"id\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "7968f273-03af-4093-ac24-e16c5d055f35",
+              "name": "input_type",
+              "value": "={{$json[\"message\"][\"voice\"] ? \"voice\" : ($json[\"message\"][\"text\"] ? \"text\" : \"unknown\")}}",
+              "type": "string"
+            },
+            {
+              "id": "2eb83c0b-700c-4e16-bd0d-a28e16eabe67",
+              "name": "raw_text",
+              "value": "={{$json.message?.text || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "4a2cc6df-0505-4cee-8b37-e64cbc2b7732",
+              "name": "file_id",
+              "value": "={{$json.message?.voice?.file_id || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "810bf05f-5f41-425f-a540-12fae5998646",
+              "name": "lang",
+              "value": "de-DE",
+              "type": "string"
+            },
+            {
+              "id": "4c2020d9-2fb6-45e1-ad62-e5d360c931ae",
+              "name": "ts_iso",
+              "value": "={{new Date().toISOString()}}",
+              "type": "string"
+            },
+            {
+              "id": "2339a014-56e9-488b-a810-fd968c6bafcc",
+              "name": "last_name",
+              "value": "={{$json.message.from.last_name || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "1c6c81da-aa3a-45bc-b32b-164af984df0b",
+              "name": "username ",
+              "value": "={{$json.message.from.username || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "894e02af-ab76-43e2-b735-54c3072a84c5",
+              "name": "first_name",
+              "value": "={{$json.message.from.first_name || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "1d27632e-325b-4ca6-ad5c-f9a75a777755",
+              "name": "message_id",
+              "value": "={{$json.message.message_id}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -4160,
+        -2000
+      ],
+      "id": "8d0d26e9-6ec4-437b-9737-49a7a5cc14cc",
+      "name": "Set - Init Context"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.input_type }}",
+                    "rightValue": "voice",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "4d6e5bdd-4fa5-42ca-ba09-96abdde02e79"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "voice"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "418e3a0d-b18b-4ece-ac49-3c9d03246880",
+                    "leftValue": "={{ $json.input_type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -3808,
+        -2000
+      ],
+      "id": "c6307412-84cf-459c-bb94-e5dddaceae73",
+      "name": "Switch - Input Type Router"
+    },
+    {
+      "parameters": {
+        "jsCode": "const essay = ( $json.raw_text || '' ).trim();\nconst task  = Number($json.task || 1);   // 1|2|3 из Inline-меню\nconst rubric = $json.rubric;\n\nif (!essay) {\n  return [{ error: true, error_reason: 'EMPTY_TEXT',\n    msg: 'Kein Text gefunden. Bitte sende deinen B1-Brief als Text oder als Sprachnachricht.' }];\n}\n\nconst system = `\nDu bist strenger, fairer Goethe-B1-Prüfer.\nBewerte NUR nach der mitgelieferten offiziellen Rubrik (rubric_json).\nAntworte AUSSCHLIESSLICH auf Deutsch und gib NUR ein JSON-Objekt zurück (ohne Markdown).\n`;\n\nconst user = `\nPrüfungsmodul: Schreiben (Goethe-Zertifikat B1). Aufgabe/Teil: ${task}.\nrubric_json: ${JSON.stringify(rubric)}\n\nBewerte den folgenden Text. Lege ausschließlich die Rubrik zugrunde:\n- Kriterien: Erfüllung, Kohärenz, Wortschatz, Strukturen (Orthografie gehört zu Strukturen).\n- Wenn Wortanzahl < 50% des Zielumfangs oder Thema/Textsorte verfehlt ⇒ Erfüllung = E.\n- Gib für jedes Kriterium NUR die Stufe A/B/C/D/E zurück (keine Punkte).\n- Prüfe zusätzlich: on_topic, subpoints_ok, register_ok.\n\nGib NUR JSON in diesem Format:\n{\n  \"task\": ${task},\n  \"word_target\": ${rubric.targets[String(task)]},\n  \"words\": 0,\n  \"grades\": { \"Erfüllung\":\"A|B|C|D|E\", \"Kohärenz\":\"A|B|C|D|E\", \"Wortschatz\":\"A|B|C|D|E\", \"Strukturen\":\"A|B|C|D|E\" },\n  \"coverage\": { \"on_topic\": true, \"subpoints_ok\": true, \"register_ok\": true },\n  \"topIssues\": [\"...\",\"...\",\"...\"],\n  \"recommendations\": [\"...\",\"...\",\"...\"],\n  \"correctedText\": \"vollständig korrigierte B1+ Version (kurz, natürlich, ohne C1-Konstruktionen).\",\n  \"shortFeedback\": \"2–3 Sätze, knapp.\"\n}\n\nText des Prüflings:\n\"\"\"${essay}\"\"\"\n`;\n\nreturn [{ json: { system, user } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2688,
+        -1984
+      ],
+      "id": "7a2d63cd-8fb8-483d-9348-a1e2fbe118c7",
+      "name": "Build Rubric Prompt (B1).",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "jsCode": "// Берём «сырой» ответ модели (строка)\nconst raw = $json.output?.[0]?.content?.[0]?.text ?? '';\n\n// Находим самый первый \"{\", самый последний \"}\", вырезаем блок JSON\nconst start = raw.indexOf('{');\nconst end   = raw.lastIndexOf('}');\nlet cleaned = (start >= 0 && end > start) ? raw.slice(start, end + 1) : raw;\n\nlet parsed = null, isValid = false, errMsg = null;\ntry {\n  parsed = JSON.parse(cleaned);\n  isValid = true;\n} catch (e) {\n  errMsg = String(e.message || e);\n}\n\nreturn [{ json: { cleaned, isValid, parsed, errMsg, raw_model: raw } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3296,
+        -1760
+      ],
+      "id": "9cd6595e-9b49-4aef-84cf-f3992ae39dc8",
+      "name": "Clean JSON String"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "007418ba-7a90-474b-a23b-f60d14f37f55",
+              "leftValue": true,
+              "rightValue": "={{$json.isValid}}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3072,
+        -1760
+      ],
+      "id": "0c75ad88-a180-4812-a51e-6c69c51a6bfb",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{$node[\"Set - Init Context\"].json.file_id}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -3584,
+        -2112
+      ],
+      "id": "7d9fa357-78bb-40fc-ab84-069e60ff79d0",
+      "name": "Get a file",
+      "webhookId": "0efab98a-5727-4518-91c9-90a3d480fc75",
+      "credentials": {
+        "telegramApi": {
+          "id": "eYQu9hbGctTTBF6y",
+          "name": "B1 Schreiben"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        -3392,
+        -2112
+      ],
+      "id": "df6e4a79-0066-4fb5-946f-93dcab5804bb",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "OSdNBmSAF6x2ZfET",
+          "name": "OpenAI_1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "539ca4e1-942b-47ef-b353-990b173a426d",
+              "name": "raw_text",
+              "value": "={{$json.text || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "de2b2887-c68a-4922-9495-541d7d6a5dff",
+              "name": "user_id",
+              "value": "={{ $('Set - Init Context').item.json.user_id }}",
+              "type": "string"
+            },
+            {
+              "id": "79d5254b-80cf-41f0-9319-7f1d9a938d4b",
+              "name": "chat_id",
+              "value": "={{ $('Set - Init Context').item.json.chat_id }}",
+              "type": "string"
+            },
+            {
+              "id": "77bed203-f2cd-4fec-ac85-838335471fd7",
+              "name": "input_type",
+              "value": "=text",
+              "type": "string"
+            },
+            {
+              "id": "9c36260d-d608-4f06-b8aa-a6df0fb05e6a",
+              "name": "file_id",
+              "value": "={{ $('Set - Init Context').item.json.file_id }}",
+              "type": "string"
+            },
+            {
+              "id": "7ea942fc-8974-4468-a2a8-72bec33088c4",
+              "name": "lang",
+              "value": "={{ $('Set - Init Context').item.json.lang }}",
+              "type": "string"
+            },
+            {
+              "id": "a7db3329-ad6b-460b-9308-a59b103393eb",
+              "name": "ts_iso",
+              "value": "={{$node[\"Set - Init Context\"].json.ts_iso}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3184,
+        -2112
+      ],
+      "id": "318623d0-10e8-4b38-ac1b-c44cc4db0e81",
+      "name": "Set – Voice→Text Context",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "={{$json.system}}\n"
+            },
+            {
+              "content": "={{$json.user}}\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        -2464,
+        -1968
+      ],
+      "id": "571b5f4b-c412-468d-9968-a36df6eb52b2",
+      "name": "Evaluator",
+      "credentials": {
+        "openAiApi": {
+          "id": "OSdNBmSAF6x2ZfET",
+          "name": "OpenAI_1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const p = $json.parsed || {};\n\nreturn [{\n  json: {\n    task: p.task ?? null,\n    word_target: p.word_target ?? null,\n    words: p.words ?? null,           // пока оставим, но далее посчитаем сами\n    grades: p.grades || {},           // { Erfüllung, Kohärenz, Wortschatz, Strukturen }\n    coverage: p.coverage || {},       // { on_topic, subpoints_ok, register_ok }\n    topIssues: p.topIssues || [],\n    recommendations: p.recommendations || [],\n    correctedText: p.correctedText || '',\n    shortFeedback: p.shortFeedback || '',\n    // протащим далее:\n    original_text: $json.original_text || $json.raw_text || '',\n    rubric: $json.rubric || null\n  }\n}];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2848,
+        -1760
+      ],
+      "id": "801cf93d-c77d-48ff-986e-f99272b44613",
+      "name": "Parse & Normalize"
+    },
+    {
+      "parameters": {
+        "jsCode": "// === Code – Score ===\nconst p = $json; // из Normalize\nconst map = { 'A': 10, 'B': 7.5, 'C': 5, 'D': 2.5, 'E': 0 };\n\nfunction pts(key) {\n  const v = (p.grades?.[key] || '').toString().toUpperCase();\n  return map[v] ?? 0;\n}\n\nconst pErf  = pts('Erfüllung');\nconst pKoh  = pts('Kohärenz');\nconst pWort = pts('Wortschatz');\nconst pStr  = pts('Strukturen');\n\nconst total = pErf + pKoh + pWort + pStr;\nconst max_total = 40;              // 4 критерии × 10\nconst percent = Math.round((total / max_total) * 100);\n\n// Жёсткие «фейлы» по покрытию (если надо)\nconst forced =\n  (p.coverage?.on_topic === false) ||\n  (p.coverage?.subpoints_ok === false) ||\n  (p.words != null && p.word_target != null && p.words < Math.ceil(p.word_target * 0.5));\n\nconst pass_threshold = 60;\nconst passed = !forced && percent >= pass_threshold;\n\nreturn [{\n  json: {\n    ...$json,\n    points: { Erfüllung: pErf, Kohärenz: pKoh, Wortschatz: pWort, Strukturen: pStr },\n    total, max_total, percent, passed, pass_threshold, forced\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2640,
+        -1760
+      ],
+      "id": "ff2a6b1f-3299-4522-a4ab-ed442e90b150",
+      "name": "Score"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"rubric\": {\n    \"version\": \"GI-B1-Modellsatz-2015\",\n    \"targets\": { \"1\": 80, \"2\": 80, \"3\": 40 },\n    \"weights\": {\n      \"1\": {\n        \"erfuellung\":   [0, 2.5, 5, 7.5, 10],\n        \"koharenz\":     [0, 2.5, 5, 7.5, 10],\n        \"wortschatz\":   [0, 2.5, 5, 7.5, 10],\n        \"strukturen\":   [0, 2.5, 5, 7.5, 10]\n      },\n      \"2\": {\n        \"erfuellung\":   [0, 2.5, 5, 7.5, 10],\n        \"koharenz\":     [0, 2.5, 5, 7.5, 10],\n        \"wortschatz\":   [0, 2.5, 5, 7.5, 10],\n        \"strukturen\":   [0, 2.5, 5, 7.5, 10]\n      },\n      \"3\": {\n        \"erfuellung\":   [0, 1,   2,   3,   4],\n        \"koharenz\":     [0, 1,   2,   3,   4],\n        \"wortschatz\":   [0, 1.5, 3,   4.5, 6],\n        \"strukturen\":   [0, 1.5, 3,   4.5, 6]\n      }\n    },\n    \"gradeIndex\": { \"E\": 0, \"D\": 1, \"C\": 2, \"B\": 3, \"A\": 4 },\n    \"hardRules\": {\n      \"minFraction\": 0.5,\n      \"erfuellungE_zeroAll\": true\n    },\n    \"descriptors\": {\n      \"erfuellung\": {\n        \"A\": \"Alle geforderten Funktionen/Umfang erfüllt; Textsorte/Adressat/Register passend.\",\n        \"B\": \"Überwiegend erfüllt; weitgehend situations- und partneradäquat.\",\n        \"C\": \"Teilweise erfüllt; stellenweise passend.\",\n        \"D\": \"Kaum erfüllt; häufig unpassend.\",\n        \"E\": \"Thema verfehlt ODER <50% der geforderten Wörter.\"\n      },\n      \"koharenz\": {\n        \"A\": \"Klarer Aufbau, wirksame Verknüpfungen (Einleitung–Hauptteil–Schluss).\",\n        \"B\": \"Weitgehend klar; Verknüpfungen überwiegend passend.\",\n        \"C\": \"Struktur nur stellenweise erkennbar.\",\n        \"D\": \"Kaum erkennbarer Aufbau.\",\n        \"E\": \"Durchgängig unangemessen.\"\n      },\n      \"wortschatz\": {\n        \"A\": \"Angemessen und differenziert; Fehlgriffe beeinträchtigen nicht.\",\n        \"B\": \"Überwiegend angemessen; Fehler ohne Verständniseinbuße.\",\n        \"C\": \"Begrenzt/teilweise passend; Fehler stören stellenweise.\",\n        \"D\": \"Kaum angemessen; viele Fehlgriffe stören erheblich.\",\n        \"E\": \"Durchgängig unangemessen.\"\n      },\n      \"strukturen\": {\n        \"A\": \"Gute Beherrschung von Morphologie, Syntax, Orthografie; Fehler selten.\",\n        \"B\": \"Überwiegend korrekt; Fehler ohne starke Störung.\",\n        \"C\": \"Mehr Fehler; Verständnis teilweise beeinträchtigt.\",\n        \"D\": \"Viele Fehler; Verständnis erheblich beeinträchtigt.\",\n        \"E\": \"Durchgängig unangemessen.\"\n      }\n    }\n  }\n}\n",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2912,
+        -1984
+      ],
+      "id": "0029c5bf-7d31-47bc-8291-be329e68ca4b",
+      "name": "Rubric (B1 Schreiben)"
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ Number($json.message.from.id) }}"
+            },
+            {
+              "fieldId": "username",
+              "fieldValue": "={{ $json.message.from.username || '' }}"
+            },
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.message.from.first_name || '' }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $json.message.from.last_name || '' }}"
+            },
+            {
+              "fieldId": "language_code",
+              "fieldValue": "={{ $json.message.from.language_code || '' }}"
+            },
+            {
+              "fieldId": "is_bot",
+              "fieldValue": "={{ $json.message.from.is_bot }}"
+            },
+            {
+              "fieldId": "chat_id",
+              "fieldValue": "=message.chat.id\n{{ Number($json.message.chat.id) }}"
+            },
+            {
+              "fieldId": "created_at"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -3904,
+        -2496
+      ],
+      "id": "51028614-8440-45ed-a155-815e05d1440a",
+      "name": "Create a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "pcmx1BOuayBEoR4f",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f3b7c714-6c20-4946-a380-8a794647da70",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -4080,
+        -2368
+      ],
+      "id": "025d77e5-16d1-4197-9fb1-3da24636f0cc",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ Number($json.message.from.id) }}\n"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -4288,
+        -2352
+      ],
+      "id": "a9484f40-35a8-47ae-89de-139cec48eaa8",
+      "name": "Get a row",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "pcmx1BOuayBEoR4f",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "chat_id",
+              "fieldValue": "={{ Number($json.message.chat.id) }}"
+            },
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.first_name }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $json.last_name }}"
+            },
+            {
+              "fieldId": "language_code",
+              "fieldValue": "={{ $json.language_code }}"
+            },
+            {
+              "fieldId": "is_bot",
+              "fieldValue": "={{ $json.is_bot }}"
+            },
+            {
+              "fieldId": "last_seen",
+              "fieldValue": "={{ $json.last_seen }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -3904,
+        -2288
+      ],
+      "id": "21ded8c9-936e-48c5-a85c-26bc54f3073d",
+      "name": "Update a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "pcmx1BOuayBEoR4f",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=Du bist ein freundlicher Coach (B1-Deutsch). Sprich klar, einfach und höflich.\nRECHNE NICHT neu; benutze NUR die Felder aus dem JSON ({{ $json }}).\nGib NUR die Antwort für den Nutzer als kompaktes Markdown (Legacy). Kein Codeblock, keine Zusatzzeilen.\n\nEingabefelder (nur lesen):\n- task: {{$json.task}}\n- points: Gesamt {{$json.points.total}} / Max {{$json.points.max_total}}\n- percent: {{$json.percent}}%\n- pass_threshold: {{$json.pass_threshold}}%\n- passed: {{ $json.passed ? \"bestanden\" : \"nicht bestanden\" }}\n- word_target: {{$json.word_target}}\n- recommendations: {{$json.recommendations}}\n\nFormatiere GENAU so (wenn etwas fehlt, lass den Punkt weg; keine extra Leerzeilen dazwischen):\n\n**Ergebnis:** {{$json.percent}}% – {{ $json.passed ? \"bestanden\" : \"nicht bestanden\" }}\n\n**Kurzfeedback:** 2–4 Sätze in B1. Nenne 1–2 Hauptgründe für das Ergebnis (Thema, Wortzahl, Struktur, Grammatik).\n\n**Empfehlungen:**{{ $json.recommendations && $json.recommendations.length ? \"\" : \" (—)\" }}\n{{ $json.recommendations && $json.recommendations[0] ? \"• \" + $json.recommendations[0] : \"\" }}\n{{ $json.recommendations && $json.recommendations[1] ? \"• \" + $json.recommendations[1] : \"\" }}\n{{ $json.recommendations && $json.recommendations[2] ? \"• \" + $json.recommendations[2] : \"\" }}\n"
+            },
+            {
+              "content": "=**Ergebnis:** {{$json.percent}}% – {{ $json.passed ? \"bestanden\" : \"nicht bestanden\" }}\n**Kurzfeedback:** 2–4 Sätze, B1-Deutsch (ohne neue Zahlen rechnen).\n{{ $json.recommendations && $json.recommendations.length ? \"**Empfehlungen:**\" : \"\" }}\n{{ $json.recommendations && $json.recommendations[0] ? \"• \" + $json.recommendations[0] : \"\" }}\n{{ $json.recommendations && $json.recommendations[1] ? \"• \" + $json.recommendations[1] : \"\" }}\n{{ $json.recommendations && $json.recommendations[2] ? \"• \" + $json.recommendations[2] : \"\" }}\n"
+            }
+          ]
+        },
+        "simplify": false,
+        "builtInTools": {},
+        "options": {
+          "maxTokens": 800
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        -2432,
+        -1744
+      ],
+      "id": "47e49627-4dce-4021-be4c-940662da9408",
+      "name": "Coach – Verdict & Rewrite (B1)",
+      "credentials": {
+        "openAiApi": {
+          "id": "OSdNBmSAF6x2ZfET",
+          "name": "OpenAI_1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output[0].content[0].text }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -2112,
+        -1744
+      ],
+      "id": "92ef74a0-5e3a-4b3f-9a65-24961566f493",
+      "name": "Send a text message",
+      "webhookId": "b04ec0a9-d0ee-4bde-8d46-240480238dd5",
+      "retryOnFail": false,
+      "executeOnce": false,
+      "notesInFlow": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "eYQu9hbGctTTBF6y",
+          "name": "B1 Schreiben"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "messageId": "={{ $node[\"Send a text message\"].json.result.message_id }}\n",
+        "replyMarkup": "inlineKeyboard",
+        "text": "={{ $json.result.text }}",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Посмотреть идеальную версию.",
+                    "additionalFields": {
+                      "callback_data": "b1_show_ideal"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1888,
+        -1744
+      ],
+      "id": "c67ba74b-c81a-4e73-89ec-e3b5f1e28f4f",
+      "name": "Edit a text message",
+      "webhookId": "07ecbbb3-bff3-49dd-a36f-50afcaae6b16",
+      "credentials": {
+        "telegramApi": {
+          "id": "eYQu9hbGctTTBF6y",
+          "name": "B1 Schreiben"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "87e636b8-dd54-4a48-9831-2c81e35a4b91",
+              "name": "chat_id",
+              "value": "={{$json.callback_query.message.chat.id}}",
+              "type": "string"
+            },
+            {
+              "id": "f99c5689-c139-45d3-ae17-df531328d284",
+              "name": "message_id    ",
+              "value": "={{$json.callback_query.message.message_id}}",
+              "type": "string"
+            },
+            {
+              "id": "36e9ddff-5ecc-4902-8803-35b507c75cf7",
+              "name": "user_id ",
+              "value": "={{$json.callback_query.from.id}}",
+              "type": "string"
+            },
+            {
+              "id": "3a71bef0-c2ae-4ac4-9d56-faf7040a1fcf",
+              "name": "callback_data  ",
+              "value": "= {{$json.callback_query.data}}",
+              "type": "string"
+            },
+            {
+              "id": "62d9aebf-be95-4286-b3bb-c8aa6865e17b",
+              "name": "callback_query_id",
+              "value": "={{$json.callback_query.id}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -4480,
+        -1504
+      ],
+      "id": "9878ed22-110c-428c-9b37-830500e208ec",
+      "name": "Extract from callback"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ Number($('Set - Init Context').item.json.user_id) }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "chat_id",
+              "fieldValue": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
+            },
+            {
+              "fieldId": "last_raw_text",
+              "fieldValue": "={{ $('Telegram Trigger').item.json.message.text }}"
+            },
+            {
+              "fieldId": "last_seen",
+              "fieldValue": "={{ new Date().toISOString() }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -2096,
+        -1536
+      ],
+      "id": "de20fd47-daa6-4298-817c-45c7116afda0",
+      "name": "Update a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "pcmx1BOuayBEoR4f",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json['user_id '] }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -4320,
+        -1504
+      ],
+      "id": "6c17a0be-77ee-4b92-9e64-b0108182e87d",
+      "name": "Get a row1",
+      "alwaysOutputData": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "pcmx1BOuayBEoR4f",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $node[\"Extract from callback\"].json.chat_id }}",
+        "text": "=Ideale Version ✨\n\n{{ $json.output[0].content[0].text }}\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -2672,
+        -1424
+      ],
+      "id": "8b09a52f-3a50-4bf4-81b3-da645d4d9731",
+      "name": "Send a text message1",
+      "webhookId": "03652169-b1ba-4a99-82de-fbac5a2eccc0",
+      "credentials": {
+        "telegramApi": {
+          "id": "eYQu9hbGctTTBF6y",
+          "name": "B1 Schreiben"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "67f87916-6f7e-4c94-b280-8eedb0706922",
+                    "leftValue": "={{ !!$json.message }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "cc06a9e8-4f17-4cc5-bcae-3ca89985ce83",
+                    "leftValue": "={{ $json.callback_query?.data === 'b1_show_ideal' }}",
+                    "rightValue": "=",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "coll"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -4464,
+        -1984
+      ],
+      "id": "d6ab5210-3353-4467-be27-6d53cc8db8d3",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Берём исходный текст из Get a row1 (он выше по пути и точно выполнен)\nconst essay  = $node[\"Get a row1\"].json.last_raw_text || \"\";\n\n// Стиль и рубрика приходят из предыдущих Set-нод в ЭТОЙ ветке\nconst style  = $json.style || {};\nconst rubric = $json.rubric || {};\n\nconst system = `\nDu bist strenge*r, faire*r Prüfer*in für das Goethe-Zertifikat B1 (Schreiben).\nSchreibe NUR den fertigen Brief (ohne Erklärungen).\nHalte dich strikt an Kriterien (rubric_json) und Style-Pack (style_json).\n`;\n\nconst user = `\nrubric_json: ${JSON.stringify(rubric)}\nstyle_json: ${JSON.stringify(style)}\n\nAufgabe: Erstelle eine ideale B1-Version des Lernertextes.\nPflicht:\n• Struktur: ${(style.structure||[]).join(\" – \")}\n• Wortanzahl: ${(style.word_range||[])[0]}–${(style.word_range||[])[1]} Wörter\n• Register: ${style.register}\n• Verbinde Sätze mit: ${(style.must_use?.connectors||[]).join(\", \")}\n• Nutze: ${(style.must_use?.patterns||[]).join(\", \")}\n\nVerbote: ${(style.avoid||[]).join(\"; \")}\n\nBrief: \"\"\"${essay}\"\"\"\n`;\n\nreturn [{ json: { system, user } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3776,
+        -1488
+      ],
+      "id": "5ce71dcb-b412-466f-997e-85eca65e0968",
+      "name": "Build Prompt"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"style\": {\n    \"word_range\": [80, 120],\n    \"structure\": [\"Einleitung\", \"Hauptteil\", \"Schluss\"],\n    \"register\": \"höflich, sachlich, B1\",\n    \"must_use\": {\n      \"connectors\": [\"zuerst\", \"danach\", \"außerdem\", \"jedoch\", \"deshalb\", \"trotzdem\", \"zum Schluss\"],\n      \"patterns\": [\"Relativsätze\", \"Konjunktiv II für Höflichkeit (würde/könnte)\", \"einfache Nebensätze mit weil/dass\"]\n    },\n    \"avoid\": [\n      \"sehr lange Schachtelsätze\",\n      \"C1/C2-Ausdrücke\",\n      \"zu viele Ausrufezeichen\",\n      \"neue Fakten, die nicht im Original stehen\"\n    ],\n    \"letter\": {\n      \"openings\": [\"Sehr geehrte Damen und Herren,\", \"Liebe Frau / Lieber Herr [Name],\"],\n      \"closings\": [\"Mit freundlichen Grüßen\", \"Viele Grüße\"]\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -4128,
+        -1488
+      ],
+      "id": "68d67a8a-ae1b-4ba8-a6a8-2e7f1d2222be",
+      "name": "Style Pack (B1)"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "GPT-5"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "={{$json.system}}"
+            },
+            {
+              "content": "=\n{{$json.user}}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        -3584,
+        -1472
+      ],
+      "id": "168fdb04-82b8-4f72-b273-826941043e12",
+      "name": "Writer (Ideal B1)",
+      "credentials": {
+        "openAiApi": {
+          "id": "OSdNBmSAF6x2ZfET",
+          "name": "OpenAI_1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const txt = $json.output?.[0]?.content?.[0]?.text || \"\";\nconst words = txt.trim().split(/\\s+/).filter(Boolean).length;\nconst [minW, maxW] = [80,120];\n\nreturn [{ json: { txt, words, ok: words>=minW && words<=maxW, minW, maxW } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3280,
+        -1472
+      ],
+      "id": "6408b203-3585-4f2b-95d9-6bb70b4f0c04",
+      "name": "Self-Check (слов)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cc0f8428-26f0-4f30-b70e-5ce8380cd680",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3088,
+        -1472
+      ],
+      "id": "cfdc9dca-53d9-499d-b2fd-d3cca779aa71",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "GPT-5"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Du bist sorgfältige*r B1-Redakteur*in. Kürze oder erweitere den Text auf die gewünschte Länge, ohne neue Fakten.\n"
+            },
+            {
+              "content": "=Ziel: {{$json.minW}}–{{$json.maxW}} Wörter.\nText:\n\"\"\"{{$json.txt}}\"\"\"\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        -3008,
+        -1216
+      ],
+      "id": "156bc7e8-1930-44df-adcf-02da1c966a76",
+      "name": "Rewriter Переписчик",
+      "credentials": {
+        "openAiApi": {
+          "id": "OSdNBmSAF6x2ZfET",
+          "name": "OpenAI_1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"rubric\": {\n    \"version\": \"GI-B1-Modellsatz-2015\",\n    \"targets\": { \"1\": 80, \"2\": 80, \"3\": 40 },\n    \"weights\": {\n      \"1\": {\n        \"erfuellung\":   [0, 2.5, 5, 7.5, 10],\n        \"koharenz\":     [0, 2.5, 5, 7.5, 10],\n        \"wortschatz\":   [0, 2.5, 5, 7.5, 10],\n        \"strukturen\":   [0, 2.5, 5, 7.5, 10]\n      },\n      \"2\": {\n        \"erfuellung\":   [0, 2.5, 5, 7.5, 10],\n        \"koharenz\":     [0, 2.5, 5, 7.5, 10],\n        \"wortschatz\":   [0, 2.5, 5, 7.5, 10],\n        \"strukturen\":   [0, 2.5, 5, 7.5, 10]\n      },\n      \"3\": {\n        \"erfuellung\":   [0, 1,   2,   3,   4],\n        \"koharenz\":     [0, 1,   2,   3,   4],\n        \"wortschatz\":   [0, 1.5, 3,   4.5, 6],\n        \"strukturen\":   [0, 1.5, 3,   4.5, 6]\n      }\n    },\n    \"gradeIndex\": { \"E\": 0, \"D\": 1, \"C\": 2, \"B\": 3, \"A\": 4 },\n    \"hardRules\": {\n      \"minFraction\": 0.5,\n      \"erfuellungE_zeroAll\": true\n    },\n    \"descriptors\": {\n      \"erfuellung\": {\n        \"A\": \"Alle geforderten Funktionen/Umfang erfüllt; Textsorte/Adressat/Register passend.\",\n        \"B\": \"Überwiegend erfüllt; weitgehend situations- und partneradäquat.\",\n        \"C\": \"Teilweise erfüllt; stellenweise passend.\",\n        \"D\": \"Kaum erfüllt; häufig unpassend.\",\n        \"E\": \"Thema verfehlt ODER <50% der geforderten Wörter.\"\n      },\n      \"koharenz\": {\n        \"A\": \"Klarer Aufbau, wirksame Verknüpfungen (Einleitung–Hauptteil–Schluss).\",\n        \"B\": \"Weitgehend klar; Verknüpfungen überwiegend passend.\",\n        \"C\": \"Struktur nur stellenweise erkennbar.\",\n        \"D\": \"Kaum erkennbarer Aufbau.\",\n        \"E\": \"Durchgängig unangemessen.\"\n      },\n      \"wortschatz\": {\n        \"A\": \"Angemessen und differenziert; Fehlgriffe beeinträchtigen nicht.\",\n        \"B\": \"Überwiegend angemessen; Fehler ohne Verständniseinbuße.\",\n        \"C\": \"Begrenzt/teilweise passend; Fehler stören stellenweise.\",\n        \"D\": \"Kaum angemessen; viele Fehlgriffe stören erheblich.\",\n        \"E\": \"Durchgängig unangemessen.\"\n      },\n      \"strukturen\": {\n        \"A\": \"Gute Beherrschung von Morphologie, Syntax, Orthografie; Fehler selten.\",\n        \"B\": \"Überwiegend korrekt; Fehler ohne starke Störung.\",\n        \"C\": \"Mehr Fehler; Verständnis teilweise beeinträchtigt.\",\n        \"D\": \"Viele Fehler; Verständnis erheblich beeinträchtigt.\",\n        \"E\": \"Durchgängig unangemessen.\"\n      }\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3984,
+        -1584
+      ],
+      "id": "b6e7c7b4-68e7-486e-838e-88578836b5c9",
+      "name": "Rubric B1 (local)."
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set - Init Context": {
+      "main": [
+        [
+          {
+            "node": "Switch - Input Type Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch - Input Type Router": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rubric (B1 Schreiben)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Rubric Prompt (B1).": {
+      "main": [
+        [
+          {
+            "node": "Evaluator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean JSON String": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Parse & Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Set – Voice→Text Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set – Voice→Text Context": {
+      "main": [
+        [
+          {
+            "node": "Rubric (B1 Schreiben)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluator": {
+      "main": [
+        [
+          {
+            "node": "Clean JSON String",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse & Normalize": {
+      "main": [
+        [
+          {
+            "node": "Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score": {
+      "main": [
+        [
+          {
+            "node": "Coach – Verdict & Rewrite (B1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rubric (B1 Schreiben)": {
+      "main": [
+        [
+          {
+            "node": "Build Rubric Prompt (B1).",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row": {
+      "main": [
+        []
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Create a row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Coach – Verdict & Rewrite (B1)": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update a row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit a text message": {
+      "main": [
+        []
+      ]
+    },
+    "Update a row1": {
+      "main": [
+        []
+      ]
+    },
+    "Extract from callback": {
+      "main": [
+        [
+          {
+            "node": "Get a row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row1": {
+      "main": [
+        [
+          {
+            "node": "Style Pack (B1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        []
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Set - Init Context",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from callback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Style Pack (B1)": {
+      "main": [
+        [
+          {
+            "node": "Rubric B1 (local).",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "Writer (Ideal B1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Writer (Ideal B1)": {
+      "main": [
+        [
+          {
+            "node": "Self-Check (слов)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Self-Check (слов)": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rewriter Переписчик",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rewriter Переписчик": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rubric B1 (local).": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "81a667c9-82ea-4d2d-9fe1-1e63bb057668",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "53c9c8684b0d9a328bac083792dc45b5f45f4bbb3b6ec82a63cc466b71bf4100"
+  },
+  "id": "4eIraOy2QmaFURth",
+  "tags": [
+    {
+      "updatedAt": "2025-10-31T22:34:27.395Z",
+      "createdAt": "2025-10-31T22:34:27.395Z",
+      "id": "tP2kcYKYxWo6VzbW",
+      "name": "GoetheB1"
+    }
+  ]
+}

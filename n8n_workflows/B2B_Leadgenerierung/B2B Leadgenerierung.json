@@ -1,0 +1,3188 @@
+{
+  "name": "B2B Leadgenerierung",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1TdhZsYM7nACdGULhN52hP6rpb3mj2iOfaS6agHUbN8I",
+          "mode": "list",
+          "cachedResultName": "Unternehmen google Maps",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TdhZsYM7nACdGULhN52hP6rpb3mj2iOfaS6agHUbN8I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Tabelle erstellen').first().json.title }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Stadt",
+              "displayName": "Stadt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefonnummer",
+              "displayName": "Telefonnummer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2688,
+        96
+      ],
+      "id": "acb24b7c-9d72-4b7c-a1e5-81d582649dc0",
+      "name": "Einfügen",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1TdhZsYM7nACdGULhN52hP6rpb3mj2iOfaS6agHUbN8I",
+          "mode": "list",
+          "cachedResultName": "Unternehmen google Maps",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TdhZsYM7nACdGULhN52hP6rpb3mj2iOfaS6agHUbN8I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Tabelle erstellen').item.json.title }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Stadt",
+              "displayName": "Stadt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefonnummer",
+              "displayName": "Telefonnummer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1888,
+        96
+      ],
+      "id": "bc26a60e-6cce-4164-9e15-1cc0af9395b5",
+      "name": "Spalten einfügen",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1TdhZsYM7nACdGULhN52hP6rpb3mj2iOfaS6agHUbN8I",
+          "mode": "list",
+          "cachedResultName": "Unternehmen google Maps",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TdhZsYM7nACdGULhN52hP6rpb3mj2iOfaS6agHUbN8I/edit?usp=drivesdk"
+        },
+        "title": "={{ $json.Unternehmen }} in {{ $json.Region }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1472,
+        96
+      ],
+      "id": "c09fb859-9929-44d4-b3f8-38a413615643",
+      "name": "Tabelle erstellen",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d644f90-7a40-4e74-a1b3-cd911d14277d",
+              "name": "Unternehmen",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "25b243c0-ee86-4889-b364-44c83760cb6d",
+              "name": "Website",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "f79da017-8379-4638-82d7-061e7e8c5414",
+              "name": "Adresse",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "e87d6df9-55ed-4ba2-8847-2ffbabf39865",
+              "name": "Stadt",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "a7846d66-1485-4db9-8aa0-e80dfed43525",
+              "name": "Telefonnummer",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1696,
+        96
+      ],
+      "id": "0cd88809-367c-4ea1-be62-66df838871ef",
+      "name": "Spaltennamen setzen"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d644f90-7a40-4e74-a1b3-cd911d14277d",
+              "name": "Unternehmen",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "25b243c0-ee86-4889-b364-44c83760cb6d",
+              "name": "Website",
+              "value": "={{ $json.website }}",
+              "type": "string"
+            },
+            {
+              "id": "f79da017-8379-4638-82d7-061e7e8c5414",
+              "name": "Adresse",
+              "value": "={{ $json.address }}",
+              "type": "string"
+            },
+            {
+              "id": "e87d6df9-55ed-4ba2-8847-2ffbabf39865",
+              "name": "Stadt",
+              "value": "={{ $json.city }}",
+              "type": "string"
+            },
+            {
+              "id": "a7846d66-1485-4db9-8aa0-e80dfed43525",
+              "name": "Telefonnummer",
+              "value": "={{ $json.phone_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2496,
+        96
+      ],
+      "id": "503ebd24-a494-4a50-b309-c03b8799dae7",
+      "name": "Informationen setzen"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2288,
+        96
+      ],
+      "id": "e81dc437-bd2d-494b-8801-79d5f4b31097",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "url": "https://local-business-data.p.rapidapi.com/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $('Tabelle erstellen').first().json.title }}"
+            },
+            {
+              "name": "limit",
+              "value": "50"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-rapidapi-host",
+              "value": "local-business-data.p.rapidapi.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2096,
+        96
+      ],
+      "id": "90da49c0-e581-483d-b6af-aba6db224d76",
+      "name": "Rapid API",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "cXmrjdAdHR0iBpPa",
+          "name": "Rapid API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Unternehmenssucher",
+        "formDescription": "Gebe ein Typ von Unternehmen an und die Region.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Unternehmen",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Region",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1248,
+        96
+      ],
+      "id": "5e33cc65-5f37-45bf-9151-043dd6c0f5cb",
+      "name": "On form submission",
+      "webhookId": "eec37642-ef40-4065-aca1-73e0816bb74c"
+    },
+    {
+      "parameters": {
+        "content": "# Google Maps Leadsuche nach Unternehmenstyp",
+        "height": 80,
+        "width": 880
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        -80
+      ],
+      "id": "01a96163-f9e2-442a-8f8a-6c2d6392731a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Google Maps Leadsuche nach Unternehmensname",
+        "height": 80,
+        "width": 880
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        336
+      ],
+      "id": "6f303053-bc7f-49c6-aa3d-c68700a7e94b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "https://local-business-data.p.rapidapi.com/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json.Unternehmen }}"
+            },
+            {
+              "name": "limit",
+              "value": "50"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-rapidapi-host",
+              "value": "local-business-data.p.rapidapi.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1888,
+        512
+      ],
+      "id": "7cfe9497-6b36-4ee1-abf4-42c8bdc31efc",
+      "name": "Rapid API1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "cXmrjdAdHR0iBpPa",
+          "name": "Rapid API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1fs_ahL4VzjMyPfmUZ2U2tPX0UnxrEYAWJu0CdrKwzVQ",
+          "mode": "list",
+          "cachedResultName": "Unternehmen Google Maps",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1fs_ahL4VzjMyPfmUZ2U2tPX0UnxrEYAWJu0CdrKwzVQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json['Google Sheets Tabellenname'] }}",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1472,
+        512
+      ],
+      "id": "f25fe016-dec7-4b6b-8e3c-93dd71d889a3",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "982807c3-a716-4e76-9d5a-548fa9ed2a16",
+              "leftValue": "={{ $json.Website }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        512
+      ],
+      "id": "569a5ff6-17a1-46fd-9f03-4d3af4384cb4",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "formTitle": "Google Maps Website Suche",
+        "formDescription": "=Gebe die Google Sheets Tabelle.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Google Sheets Tabellenname",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "Die gefundenen Webseiten wurden eingetragen."
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1248,
+        512
+      ],
+      "id": "8006eaf4-7cbe-42af-9b12-67c5516d70ce",
+      "name": "On form submission2",
+      "webhookId": "ccae3f71-f134-425f-9b55-518895c374cf"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1fs_ahL4VzjMyPfmUZ2U2tPX0UnxrEYAWJu0CdrKwzVQ",
+          "mode": "list",
+          "cachedResultName": "Unternehmen Google Maps",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1fs_ahL4VzjMyPfmUZ2U2tPX0UnxrEYAWJu0CdrKwzVQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('On form submission2').first().json['Google Sheets Tabellenname'] }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Unternehmen": "={{ $json.parameters.query }}",
+            "Telefonnummer": "={{ $json.data[0].phone_number }}",
+            "Website": "={{ $json.data[0].website }}",
+            "Adresse": "={{ $json.data[0].address }}",
+            "Stadt": "={{ $json.data[0].city }}"
+          },
+          "matchingColumns": [
+            "Unternehmen"
+          ],
+          "schema": [
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Stadt",
+              "displayName": "Stadt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefonnummer",
+              "displayName": "Telefonnummer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2096,
+        512
+      ],
+      "id": "66b93163-8472-45be-8d02-e7d2c5f0ccb2",
+      "name": "Eintragen",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Leadinformationen von Apollo nach Unternehmenstyp",
+        "height": 80,
+        "width": 940
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        784
+      ],
+      "id": "9bacb981-5fdb-403f-8a0c-05245e802872",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "formTitle": "Apollo Scraper",
+        "formDescription": "=Gebe die Apollo URL an.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Apollo URL eingeben",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Beschreibung der Leads",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "Die gefundenen Webseiten wurden eingetragen."
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1232,
+        992
+      ],
+      "id": "9e97e428-c6a6-4e1e-8d31-077686eef1c5",
+      "name": "On form submission3",
+      "webhookId": "356cb1f8-374f-4bc7-be85-55579b73c246"
+    },
+    {
+      "parameters": {
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        2048,
+        992
+      ],
+      "id": "a16e68cf-7820-4bc4-a523-03e17bf831c5",
+      "name": "Apify",
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "title": "={{ $json['Beschreibung der Leads'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1440,
+        992
+      ],
+      "id": "787c1a6d-6112-47a7-8b42-63f09831d0df",
+      "name": "Tabelle erstellen2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Tabelle erstellen2').item.json.title }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "Name": "={{ $json.name }}",
+            "Email": "={{ $json.email }}",
+            "Unternehmen": "={{ $json.organization }}",
+            "Website": "={{ $json.website }}",
+            "Lead Linkedin": "={{ $json.lead_linkedin }}",
+            "Linkedin Headline": "={{ $json.headline }}",
+            "Unternehmen Linkedin": "={{ $json.organization_linkedin }}",
+            "Adresse Unternehmen": "={{ $json.organization_adress }}",
+            "Land Unternehmen": "={{ $json.organization_country }}",
+            "Telefonnummer Unternehmen": "={{ $json.phone }}",
+            "Industrie": "={{ $json.industry }}",
+            "Position": "={{ $json.position }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Position",
+              "displayName": "Position",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lead Linkedin",
+              "displayName": "Lead Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin Headline",
+              "displayName": "Linkedin Headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen Linkedin",
+              "displayName": "Unternehmen Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Adresse Unternehmen",
+              "displayName": "Adresse Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Land Unternehmen",
+              "displayName": "Land Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefonnummer Unternehmen",
+              "displayName": "Telefonnummer Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Industrie",
+              "displayName": "Industrie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2512,
+        992
+      ],
+      "id": "0723b54d-adbf-4d64-9363-07771583cc12",
+      "name": "Spalten einfügen2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Tabelle erstellen2').item.json.title }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Lead_Linkedin",
+              "displayName": "Lead_Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin_Headline",
+              "displayName": "Linkedin_Headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen_Linkedin",
+              "displayName": "Unternehmen_Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Industrie",
+              "displayName": "Industrie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1840,
+        992
+      ],
+      "id": "4dc4ca98-fb1b-482e-8f44-c85abaad0cda",
+      "name": "Spalten einfügen1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37ffd31e-3b25-4e25-95bb-d140a017de03",
+              "name": "Name",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "ba8d5d27-d3f1-41a1-a065-89ba3065e090",
+              "name": "Email",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "55d9e81b-1a51-43f4-9283-b5b3ff6299e2",
+              "name": "Position",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "a6b1dfec-1c12-4a4e-a9aa-e10e9df77edb",
+              "name": "Unternehmen",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "18e3faf8-711c-4742-91bf-3b2cfd5b76e1",
+              "name": "Website",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "3cc08d62-fca9-4ddb-b94d-b8517c7e01cb",
+              "name": "Lead Linkedin",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "3e428c03-271a-4095-b3b2-171981eb1a6d",
+              "name": "Linkedin Headline",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "f648997a-5e9d-4f49-ae7c-0a2819336527",
+              "name": "Unternehmen Linkedin",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "975a9c78-37fa-40cf-8aaa-9cad4c3e77e7",
+              "name": "Adresse Unternehmen",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "14dabaff-89f0-4a46-a729-be449f20f6a2",
+              "name": "Land Unternehmen",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "76bb7033-96d0-4539-88bf-68e45aa20964",
+              "name": "Telefonnummer Unternehmen",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "8fab01e3-6a7f-49d9-b0c6-def61e379ac8",
+              "name": "Industrie",
+              "value": "=",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1632,
+        992
+      ],
+      "id": "d8a9bf15-7fed-4903-aa0d-b322f48a273c",
+      "name": "Spalten setzen"
+    },
+    {
+      "parameters": {
+        "formTitle": "Apollo Scraper",
+        "formDescription": "=Gebe die Apollo URL an.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Apollo URL eingeben",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Beschreibung der Leads",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "Die gefundenen Webseiten wurden eingetragen."
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1232,
+        1616
+      ],
+      "id": "a1355c87-c36b-4f5f-ad7a-eb34bd7c7e36",
+      "name": "On form submission4",
+      "webhookId": "a7e36f65-448a-4ee4-8c15-cdbd3be68521"
+    },
+    {
+      "parameters": {
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        2032,
+        1616
+      ],
+      "id": "88574a87-7831-4c95-9c45-eb89543121b1",
+      "name": "Apify1",
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "title": "={{ $json['Beschreibung der Leads'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1408,
+        1616
+      ],
+      "id": "00bc6e30-4aeb-4afa-b4b0-8f08b9c609a4",
+      "name": "Tabelle erstellen3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Tabelle erstellen3').item.json.title }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Lead_Linkedin",
+              "displayName": "Lead_Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin_Headline",
+              "displayName": "Linkedin_Headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen_Linkedin",
+              "displayName": "Unternehmen_Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Industrie",
+              "displayName": "Industrie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1808,
+        1616
+      ],
+      "id": "ce40b2d7-53f1-4b96-a86a-275f8be34653",
+      "name": "Spalten einfügen4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37ffd31e-3b25-4e25-95bb-d140a017de03",
+              "name": "Name",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "ba8d5d27-d3f1-41a1-a065-89ba3065e090",
+              "name": "Email",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "55d9e81b-1a51-43f4-9283-b5b3ff6299e2",
+              "name": "Position",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "a6b1dfec-1c12-4a4e-a9aa-e10e9df77edb",
+              "name": "Unternehmen",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "18e3faf8-711c-4742-91bf-3b2cfd5b76e1",
+              "name": "Website",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "3cc08d62-fca9-4ddb-b94d-b8517c7e01cb",
+              "name": "Lead Linkedin",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "3e428c03-271a-4095-b3b2-171981eb1a6d",
+              "name": "Linkedin Headline",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "f648997a-5e9d-4f49-ae7c-0a2819336527",
+              "name": "Unternehmen Linkedin",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "975a9c78-37fa-40cf-8aaa-9cad4c3e77e7",
+              "name": "Adresse Unternehmen",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "14dabaff-89f0-4a46-a729-be449f20f6a2",
+              "name": "Land Unternehmen",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "76bb7033-96d0-4539-88bf-68e45aa20964",
+              "name": "Telefonnummer Unternehmen",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "8fab01e3-6a7f-49d9-b0c6-def61e379ac8",
+              "name": "Industrie",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "7cf79825-1777-4947-a685-a293637f3588",
+              "name": "Website Informationen",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "e55424e0-326c-473c-87c4-dd10b7e749c0",
+              "name": "Unternehmensinformationen Perplexity",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "8a98aa94-92c3-4fac-a126-b2d42d3d5129",
+              "name": "Personalisierte Email",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "cdb33da0-548a-49c2-9c69-a572b8e85a7e",
+              "name": "Emailbetreff",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "99ed0317-09b8-40c3-8912-ce4baf553936",
+              "name": "Email versendet",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1616,
+        1616
+      ],
+      "id": "58d1942f-b9a4-4d31-85b0-144f9679d42d",
+      "name": "Spalten setzen1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2720,
+        1616
+      ],
+      "id": "75633a4e-c380-4cf0-a2e5-0a00a24d46ec",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-firecrawl-scraper.fireCrawlScraper",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        1632
+      ],
+      "id": "403ad0e8-b0ae-4b98-87a2-b470142fa4b8",
+      "name": "FireCrawl Scraper",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        3808,
+        1936
+      ],
+      "id": "5331e348-404c-476c-ae98-5b0d22f15d32",
+      "name": "OpenRouter Chat Model"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Fasse folgende Websiteinformationen zusammen. Was macht dieses Unternehmen aus?\n\n {{ $json.data.markdown }}",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        3408,
+        1456
+      ],
+      "id": "73dfab1b-8f30-45bb-808b-362b9de19f00",
+      "name": "Website Informationen"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"betreff\": \"KI-Booster für FlexOfficeAgency\",\n\t\"email\": \"Liebe Frau Benzmueller, Als Director Operations bei FlexOfficeAgency haben Sie...\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        4160,
+        2096
+      ],
+      "id": "29781758-1ac5-483c-825f-2429afa81841",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "content": "# Automatisiertes Emailverschicken",
+        "height": 80,
+        "width": 940
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        2064
+      ],
+      "id": "d285e387-1582-4735-a376-beb162f9c29c",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "formTitle": "Emailsender",
+        "formDescription": "=Gebe die Google Sheets Tabelle im Google Sheets Dokument \"Apollo Leads\" an, in der die Emails enthalten sind.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Google Sheet Tabellename angeben",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "Die gefundenen Webseiten wurden eingetragen."
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1232,
+        2256
+      ],
+      "id": "4ab33496-673a-4f00-ab22-dcaba0c074c7",
+      "name": "On form submission5",
+      "webhookId": "9415f19a-a199-48b2-98f3-4d7cb6489699"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json['Google Sheet Tabellename angeben'] }}",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1456,
+        2256
+      ],
+      "id": "ee183922-e754-41a8-ac54-a01f09e4ea39",
+      "name": "Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b03b9f55-d182-4804-bcc5-3b5ad00f7179",
+              "leftValue": "={{ $json.Email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "1ae2b685-738c-40a3-af8d-eeab53b7aef7",
+              "leftValue": "={{ $json['Email versendet'] }}",
+              "rightValue": "Ja",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1712,
+        2256
+      ],
+      "id": "432c8ad6-1e73-425b-ad48-56be37732cff",
+      "name": "Email vorhanden und noch nicht versendet"
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $json.Email }}",
+        "subject": "={{ $json.Emailbetreff }}",
+        "bodyContent": "={{ $json['Personalisierte Email'] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2512,
+        2272
+      ],
+      "id": "83a8d613-43cb-4684-9439-5c5c510c32d2",
+      "name": "Microsoft Outlook",
+      "webhookId": "5571d6b8-84e1-4600-b0b8-868953977c07"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2208,
+        2256
+      ],
+      "id": "2c39b6c2-7aca-48e8-83a4-43e4e0b76ef0",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('On form submission5').item.json['Google Sheet Tabellename angeben'] }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $('Loop Over Items1').item.json.Email }}",
+            "Email versendet": "Ja"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Position",
+              "displayName": "Position",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Lead Linkedin",
+              "displayName": "Lead Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Linkedin Headline",
+              "displayName": "Linkedin Headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Unternehmen Linkedin",
+              "displayName": "Unternehmen Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Adresse Unternehmen",
+              "displayName": "Adresse Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Land Unternehmen",
+              "displayName": "Land Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Telefonnummer Unternehmen",
+              "displayName": "Telefonnummer Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Industrie",
+              "displayName": "Industrie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Website Informationen",
+              "displayName": "Website Informationen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Unternehmensinformationen Perplexity",
+              "displayName": "Unternehmensinformationen Perplexity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Personalisierte Email",
+              "displayName": "Personalisierte Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Emailbetreff",
+              "displayName": "Emailbetreff",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email versendet",
+              "displayName": "Email versendet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2768,
+        2272
+      ],
+      "id": "d7ca92d6-b05b-4fd4-953b-437dfbaaed4b",
+      "name": "Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3040,
+        2272
+      ],
+      "id": "0e0b25d4-aac7-4dd0-b320-ec3111a9bd5a",
+      "name": "Wait",
+      "webhookId": "45d850ed-4f66-4805-a6c5-497dbcb5b19b"
+    },
+    {
+      "parameters": {
+        "maxItems": 50
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1968,
+        2256
+      ],
+      "id": "8de941bc-c5d1-4b53-9bfb-6348cf72e34d",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37ffd31e-3b25-4e25-95bb-d140a017de03",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "ba8d5d27-d3f1-41a1-a065-89ba3065e090",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "16c1e3d6-3e3f-48b1-bac9-5ab4d778ab4e",
+              "name": "position",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "a6b1dfec-1c12-4a4e-a9aa-e10e9df77edb",
+              "name": "organization",
+              "value": "={{ $json.organization.name }}",
+              "type": "string"
+            },
+            {
+              "id": "18e3faf8-711c-4742-91bf-3b2cfd5b76e1",
+              "name": "website",
+              "value": "={{ $json.organization.website_url }}",
+              "type": "string"
+            },
+            {
+              "id": "917c5d34-e8cb-4e02-b8d9-0ae66fff7d9a",
+              "name": "domain",
+              "value": "={{ $json.organization.primary_domain }}",
+              "type": "string"
+            },
+            {
+              "id": "3cc08d62-fca9-4ddb-b94d-b8517c7e01cb",
+              "name": "lead_linkedin",
+              "value": "={{ $json.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "3e428c03-271a-4095-b3b2-171981eb1a6d",
+              "name": "headline",
+              "value": "={{ $json.headline }}",
+              "type": "string"
+            },
+            {
+              "id": "f648997a-5e9d-4f49-ae7c-0a2819336527",
+              "name": "organization_linkedin",
+              "value": "={{ $json.organization.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "975a9c78-37fa-40cf-8aaa-9cad4c3e77e7",
+              "name": "organization_adress",
+              "value": "={{ $json.organization_raw_address }}",
+              "type": "string"
+            },
+            {
+              "id": "fa2473b2-ac51-408d-9058-f0052810c640",
+              "name": "organization_country",
+              "value": "={{ $json.organization_country }}",
+              "type": "string"
+            },
+            {
+              "id": "29498964-caa4-435f-be2c-35b722267a1a",
+              "name": "phone",
+              "value": "={{ $json.organization.primary_phone.sanitized_number }}",
+              "type": "string"
+            },
+            {
+              "id": "a1db55c0-9781-434c-9b2f-fd39a734f8ac",
+              "name": "industry",
+              "value": "={{ $json.industry }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2256,
+        1616
+      ],
+      "id": "33912443-fa17-4a27-9b0d-659614b667ed",
+      "name": "Felder füllen"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Tabelle erstellen3').item.json.title }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.name }}",
+            "Email": "={{ $json.email }}",
+            "Unternehmen": "={{ $json.organization }}",
+            "Website": "={{ $json.website }}",
+            "Lead Linkedin": "={{ $json.lead_linkedin }}",
+            "Linkedin Headline": "={{ $json.headline }}",
+            "Unternehmen Linkedin": "={{ $json.organization_linkedin }}",
+            "Adresse Unternehmen": "={{ $json.organization_adress }}",
+            "Land Unternehmen": "={{ $json.organization_country }}",
+            "Telefonnummer Unternehmen": "={{ $json.phone }}",
+            "Industrie": "={{ $json.industry }}",
+            "Position": "={{ $json.position }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Position",
+              "displayName": "Position",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lead Linkedin",
+              "displayName": "Lead Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Linkedin Headline",
+              "displayName": "Linkedin Headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unternehmen Linkedin",
+              "displayName": "Unternehmen Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Adresse Unternehmen",
+              "displayName": "Adresse Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Land Unternehmen",
+              "displayName": "Land Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefonnummer Unternehmen",
+              "displayName": "Telefonnummer Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Industrie",
+              "displayName": "Industrie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2480,
+        1616
+      ],
+      "id": "57e5540b-ba72-498e-b337-4332c2b30fe4",
+      "name": "Einfügen1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Informationen zur Person und zum Unternehmen:\n\nName: {{ $('Loop Over Items').item.json.Name }}\n\nPosition: {{ $('Loop Over Items').item.json.Position }}\n\nUnternehmen: {{ $('Loop Over Items').item.json.Unternehmen }}\n\nLead Linkedin Headline: {{ $('Loop Over Items').item.json['Linkedin Headline'] }}\n\nUnternehmen Website Informationen: {{ $json.text }}\n\nInternetrecherche über Perplexity: {{ $json.choices[0].message.content }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Schreibe eine kurze und freundliche Kaltakquise-E-Mail. Ziel ist es, ein kostenloses Erstgespräch zur KI-Potenzialanalyse zu vereinbaren. Die Person soll verstehen wie viel Potenzial die Nutzung von KI in ihrem Unternehmen haben kann. Verwende die folgenden Informationen zur Zielperson und zum Unternehmen, um die Nachricht individuell und relevant zu gestalten. Die E-Mail soll den Mehrwert einer KI-Automatisierung aufzeigen und Interesse wecken, ohne aufdringlich zu wirken.\n\nBetreffzeile:\n- Kurz und ansprechend: Die Betreffzeile sollte den Empfänger dazu anregen, die E-Mail zu öffnen.\n- Personalisierung: Verwenden Sie den Namen des Empfängers oder seiner Firma.\n- Relevanz: Zeigen Sie, dass Sie das Unternehmen und seine Herausforderungen verstehen.\n- Neugier wecken: Stellen Sie eine Frage oder bieten Sie einen Nutzen an. \n\nE-Mail-Inhalt:\n- Gezielte Ansprache: Bezug auf die individuellen Bedürfnisse und Herausforderungen des Empfängers.\n- Wertangebot: Zeigen Sie, wie Ihre Lösung dem Empfänger helfen kann.\n- Kurz und bündig: Vermeiden Sie lange Texte und unnötige Informationen.\n- Handlungsaufforderung: Fordern Sie den Empfänger zu einer bestimmten Aktion auf (z.B. einen Call, eine Anfrage).\n- Personalisierung: Vermeiden Sie generische Formulierungen und passen Sie die E-Mail an den Empfänger an. \nEinen klaren Call-to-Action mit Link zur Terminbuchung. Nutze diesen Link: https://terminbuchen.com\n\nSigniere ab mit Max Mustermann, Novatech AI\n\nVerwende einen Ton, der professionell, aber nicht zu steif ist – freundlich, kompetent, auf Augenhöhe. Die E-Mail soll gut lesbar und maximal 100 Wörter lang sein."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        3920,
+        1632
+      ],
+      "id": "ca58413e-c82a-4edd-a9ee-04362b488de8",
+      "name": "Email verfassen"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo",
+          "mode": "list",
+          "cachedResultName": "Leads Apollo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JTNBZdEO5uKioAbHvgrGwBZGzhMd-RdneXMr63eKxuo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Tabelle erstellen3').item.json.title }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Personalisierte Email": "={{ $json.output.email }}",
+            "Emailbetreff": "={{ $json.output.betreff }}",
+            "Website Informationen": "={{ $('Website Informationen').item.json.text }}",
+            "Website": "={{ $('Loop Over Items').item.json.Website }}"
+          },
+          "matchingColumns": [
+            "Website"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Position",
+              "displayName": "Position",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Unternehmen",
+              "displayName": "Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Lead Linkedin",
+              "displayName": "Lead Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Linkedin Headline",
+              "displayName": "Linkedin Headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Unternehmen Linkedin",
+              "displayName": "Unternehmen Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Adresse Unternehmen",
+              "displayName": "Adresse Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Land Unternehmen",
+              "displayName": "Land Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Telefonnummer Unternehmen",
+              "displayName": "Telefonnummer Unternehmen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Industrie",
+              "displayName": "Industrie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Website Informationen",
+              "displayName": "Website Informationen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Unternehmensinformationen Perplexity",
+              "displayName": "Unternehmensinformationen Perplexity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Personalisierte Email",
+              "displayName": "Personalisierte Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Emailbetreff",
+              "displayName": "Emailbetreff",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email versendet",
+              "displayName": "Email versendet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        4288,
+        1632
+      ],
+      "id": "82ce4fd8-c15b-4e1e-baf4-e11b7e2a57dc",
+      "name": "Eintragen1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "L6WJv3oRcSa2gTGL",
+          "name": "Google Sheets ki.art.cog"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Leadinformationen von Apollo nach Unternehmenstyp + Website Scrapen und Personalisierte Email",
+        "height": 80,
+        "width": 1680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        1376
+      ],
+      "id": "0e683871-cb23-419a-9886-473a4d9635ee",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/code_crafter~apollo-io-scraper/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"cleanOutput\": false,\n    \"totalRecords\": 10,\n    \"url\": \"{{ $('On form submission3').item.json['Apollo URL eingeben'] }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2048,
+        1184
+      ],
+      "id": "b2789482-37ec-4093-bd77-571f351dfa84",
+      "name": "Apify HTTP"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/code_crafter~apollo-io-scraper/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"cleanOutput\": false,\n    \"totalRecords\": 10,\n    \"url\": \"{{ $('On form submission3').item.json['Apollo URL eingeben'] }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2032,
+        1808
+      ],
+      "id": "bb619df8-2b03-42d7-b351-578ba8bd0528",
+      "name": "Apify HTTP1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v1/scrape",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"url\": \"{{ $json.Website }}\",\n  \"formats\": [\n    \"markdown\"\n  ],\n  \"onlyMainContent\": true,\n  \"parsePDF\": true,\n  \"timeout\": 30000\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3040,
+        1424
+      ],
+      "id": "8b2dbe42-0eb5-4cc6-a908-e5eedf83e239",
+      "name": "Firecrawl HTTP"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"sonar\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Finde mir jegliche Informationen im Internet zum Unternehmen  {{ $('Loop Over Items').item.json.Unternehmen }} und der Person {{ $('Loop Over Items').item.json.Name }}. Wenn du nichts dazu findest, sagst du das genau so. Gebe keine anderen Unternehmen an.\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3488,
+        1856
+      ],
+      "id": "a438e087-70e5-43e8-bea7-3ef3424e9505",
+      "name": "Perplexity HTTP"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "@watzon/n8n-nodes-perplexity.perplexity",
+      "typeVersion": 1,
+      "position": [
+        3488,
+        1632
+      ],
+      "id": "f3830e4b-a0c7-49cf-97ec-f9532c7709e4",
+      "name": "Perplexity"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37ffd31e-3b25-4e25-95bb-d140a017de03",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "ba8d5d27-d3f1-41a1-a065-89ba3065e090",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "16c1e3d6-3e3f-48b1-bac9-5ab4d778ab4e",
+              "name": "position",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "a6b1dfec-1c12-4a4e-a9aa-e10e9df77edb",
+              "name": "organization",
+              "value": "={{ $json.organization.name }}",
+              "type": "string"
+            },
+            {
+              "id": "18e3faf8-711c-4742-91bf-3b2cfd5b76e1",
+              "name": "website",
+              "value": "={{ $json.organization.website_url }}",
+              "type": "string"
+            },
+            {
+              "id": "917c5d34-e8cb-4e02-b8d9-0ae66fff7d9a",
+              "name": "domain",
+              "value": "={{ $json.organization.primary_domain }}",
+              "type": "string"
+            },
+            {
+              "id": "3cc08d62-fca9-4ddb-b94d-b8517c7e01cb",
+              "name": "lead_linkedin",
+              "value": "={{ $json.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "3e428c03-271a-4095-b3b2-171981eb1a6d",
+              "name": "headline",
+              "value": "={{ $json.headline }}",
+              "type": "string"
+            },
+            {
+              "id": "f648997a-5e9d-4f49-ae7c-0a2819336527",
+              "name": "organization_linkedin",
+              "value": "={{ $json.organization.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "975a9c78-37fa-40cf-8aaa-9cad4c3e77e7",
+              "name": "organization_adress",
+              "value": "={{ $json.organization_raw_address }}",
+              "type": "string"
+            },
+            {
+              "id": "fa2473b2-ac51-408d-9058-f0052810c640",
+              "name": "organization_country",
+              "value": "={{ $json.organization_country }}",
+              "type": "string"
+            },
+            {
+              "id": "29498964-caa4-435f-be2c-35b722267a1a",
+              "name": "phone",
+              "value": "={{ $json.organization.primary_phone.sanitized_number }}",
+              "type": "string"
+            },
+            {
+              "id": "a1db55c0-9781-434c-9b2f-fd39a734f8ac",
+              "name": "industry",
+              "value": "={{ $json.industry }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2272,
+        992
+      ],
+      "id": "686ca1ea-a92e-41ea-ad24-bb8c09f3370c",
+      "name": "Spalten füllen"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        4048,
+        1856
+      ],
+      "id": "7535b867-cf26-4eb4-ae98-a9877db1dc3a",
+      "name": "Auto-fixing Output Parser"
+    },
+    {
+      "parameters": {
+        "content": "## ⚙️ Voraussetzungen für diesen Workflow\n\n### Um diesen Workflow erfolgreich zu nutzen, beachte bitte folgende Punkte:\n\n### 🔐 Google-Zugang (Google Sheets)\n- Du brauchst einen **eigenen Google-Account**.\n- Wenn du **n8n selbst hostest**, musst du **eigene Google API-Zugangsdaten** hinterlegen (Client ID & Secret).\n- Wenn du **n8n Cloud (n8n.cloud)** nutzt, kannst du dich einfach mit deinem Google-Konto verbinden.\n- Bitte erstelle ein **eigenes Google Sheets-Dokument** und verbinde es im Workflow.\n- ❌ **Wichtig:** Bitte nutze nicht mein Dokument und stelle keine Anfragen zur Freigabe.\n\n---\n\n### 📤 E-Mail-Versand (Outlook oder Gmail)\n- Wenn du **Outlook** für den Versand nutzen möchtest, musst du **eigene Anmeldedaten (OAuth App)** erstellen.\n- Alternativ kannst du auch **Gmail** verwenden.\n- Trage deine E-Mail-Zugangsdaten sicher in die n8n-Credentials ein und verbinde sie im entsprechenden E-Mail-Modul.\n\n---\n\n### 🔁 Automatischer Start des Workflows\n- Wenn du möchtest, dass der Workflow **automatisch läuft**, musst du ihn oben rechts auf **„Active“** stellen.\n- Nur dann reagiert er auf eingehende Formulare oder Trigger.\n\n---\n\n### 🌐 Richtige Formular-URL nutzen\n- Achte darauf, dass du die **Produktions-URL** des Formulars verwendest (nicht die Test-URL), wenn der Workflow aktiv ist. Die Formulare sind per URL im Browser einsehbar.\n- Du findest sie im **Formular-Modul** im Workflow.\n\n### ❓ Fragen oder Probleme?\nWenn du irgendwo nicht weiterkommst oder technische Probleme auftauchen:  \n👉 https://www.skool.com/ki-automatisierung\n",
+        "height": 900,
+        "width": 656,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -80
+      ],
+      "id": "14c3bb9b-c2e0-4d40-a4ea-d1be720113e9",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Autor: Julian Ivanov",
+        "height": 80,
+        "width": 300,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -176
+      ],
+      "id": "fc397271-b515-4ac4-bb1c-9f6cb7aec77a",
+      "name": "Sticky Note6"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Spalten einfügen": {
+      "main": [
+        [
+          {
+            "node": "Rapid API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabelle erstellen": {
+      "main": [
+        [
+          {
+            "node": "Spaltennamen setzen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spaltennamen setzen": {
+      "main": [
+        [
+          {
+            "node": "Spalten einfügen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Informationen setzen": {
+      "main": [
+        [
+          {
+            "node": "Einfügen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Informationen setzen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rapid API": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Tabelle erstellen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Rapid API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rapid API1": {
+      "main": [
+        [
+          {
+            "node": "Eintragen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission3": {
+      "main": [
+        [
+          {
+            "node": "Tabelle erstellen2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify": {
+      "main": [
+        [
+          {
+            "node": "Spalten füllen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabelle erstellen2": {
+      "main": [
+        [
+          {
+            "node": "Spalten setzen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spalten einfügen1": {
+      "main": [
+        []
+      ]
+    },
+    "Spalten setzen": {
+      "main": [
+        [
+          {
+            "node": "Spalten einfügen1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission4": {
+      "main": [
+        [
+          {
+            "node": "Tabelle erstellen3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify1": {
+      "main": [
+        [
+          {
+            "node": "Felder füllen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabelle erstellen3": {
+      "main": [
+        [
+          {
+            "node": "Spalten setzen1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spalten einfügen4": {
+      "main": [
+        [
+          {
+            "node": "Apify1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spalten setzen1": {
+      "main": [
+        [
+          {
+            "node": "Spalten einfügen4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "FireCrawl Scraper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FireCrawl Scraper": {
+      "main": [
+        [
+          {
+            "node": "Website Informationen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Perplexity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Email verfassen",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Website Informationen",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Website Informationen": {
+      "main": [
+        [
+          {
+            "node": "Email verfassen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission5": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Email vorhanden und noch nicht versendet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email vorhanden und noch nicht versendet": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Microsoft Outlook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Felder füllen": {
+      "main": [
+        [
+          {
+            "node": "Einfügen1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Einfügen1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email verfassen": {
+      "main": [
+        [
+          {
+            "node": "Eintragen1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eintragen1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity": {
+      "main": [
+        [
+          {
+            "node": "Email verfassen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spalten füllen": {
+      "main": [
+        [
+          {
+            "node": "Spalten einfügen2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Email verfassen",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "630f5d35-126e-406b-9f17-85bab5ddf27e",
+  "meta": {
+    "instanceId": "53c9c8684b0d9a328bac083792dc45b5f45f4bbb3b6ec82a63cc466b71bf4100"
+  },
+  "id": "cIiFjkHxFzo8n33W",
+  "tags": []
+}
